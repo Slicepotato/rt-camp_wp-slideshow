@@ -1,0 +1,4 @@
+.img-preview {
+  display: none; }
+  .img-preview.show {
+    display: flex; }

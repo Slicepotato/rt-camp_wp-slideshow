@@ -1,0 +1,9 @@
+// stuff
+
+.img-preview {
+    display: none;
+
+    &.show {
+        display: flex;
+    }
+}
