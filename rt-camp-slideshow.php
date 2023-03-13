@@ -147,4 +147,13 @@
         return ob_get_clean();  
     }
     add_shortcode('rtcampslideshow', 'rtcamp_slideshow');
+
+    function delete_plugin_database_table(){
+        global $wpdb;
+        $table_name = $wpdb->prefix . 'rtcamp_slideshow';
+        $sql = "DROP TABLE IF EXISTS $table_name";
+        $wpdb->query($sql);
+    }
+    
+    register_uninstall_hook(__FILE__, 'delete_plugin_database_table');
 ?>
