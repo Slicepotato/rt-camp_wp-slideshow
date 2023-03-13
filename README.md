@@ -16,3 +16,9 @@ This plugin will test if you are familiar with WordPress shortcodes.
 - Create provision for a shortcode like [myslideshow]
 - When you add shortcode [myslideshow] to any page, it will be replaced by a slideshow of images uploaded from admin-side.
 - You can use any jQuery slideshow library/plugin.
+
+----
+
+## MVP Update
+Updated and finalized implementation upon plugin installation.
+> usage: `[rtcampslideshow]` is desired slideshow shortcode implementation
