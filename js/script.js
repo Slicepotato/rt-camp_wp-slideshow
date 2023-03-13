@@ -24,4 +24,15 @@ jQuery(document).ready(function($){
             $.post(app.ajaxurl, data);
         }
     });
+
+    $('.img-remove').on('click', function() {
+        var $slide = $(this).data('id');
+        var data = {
+            slide_id: $slide,
+            action: 'remove_slide'
+        };
+        $.post(app.ajaxurl, data).done(function(){
+            location.reload();
+        });
+    })
 });

@@ -1,7 +1,6 @@
 <?php
     $dir = wp_upload_dir(); 
     $path = $dir['basedir'] . '/rt-camp_wp-slideshow/'; 
-    $url = $dir['baseurl'] . '/rt-camp_wp-slideshow/';
     $files = scandir($path); 
 
     global $wpdb;
@@ -21,7 +20,7 @@
             <li class="sort-hover"><i class="fa-solid fa-grip-lines-vertical"></i></li>
             <li class="img-list-container"><img src="<?php echo $file->file_url; ?>" alt="<?php echo $file->file_name; ?>"></li>
             <li>
-                <button class="img-remove" name="remove" id="img_<?php echo $file->id; ?>">
+                <button class="img-remove" name="remove" id="img_<?php echo $file->id; ?>" data-id="<?php echo $file->id; ?>">
                     <i class="fa-solid fa-xmark"></i>
                 </button>
             </li>

@@ -27,15 +27,23 @@
     }
 
     // Stylesheet inclusion
-    function plugin_user_styles() {
-        wp_enqueue_style( 'font-awesome',  plugins_url( 'node_modules/@fortawesome/fontawesome-free/css/fontawesome.min.css', __FILE__ ) );
-        wp_enqueue_style( 'fa-solid',  plugins_url( 'node_modules/@fortawesome/fontawesome-free/css/solid.min.css', __FILE__ ) );
+    function plugin_admin_styles() {
+        wp_enqueue_style( 'font-awesome',  plugins_url( 'scss/vendor/font-awesome/fontawesome.min.css', __FILE__ ) );
+        wp_enqueue_style( 'fa-solid',  plugins_url( 'scss/vendor/font-awesome/solid.min.css', __FILE__ ) );
         wp_enqueue_style( 'style',  plugins_url( 'style.css', __FILE__ ) );
     }
-    add_action( 'admin_print_styles', 'plugin_user_styles' );
+    add_action( 'admin_print_styles', 'plugin_admin_styles' );
 
-    // User Scripts inclusion
-    function plugin_user_scripts() {
+    function plugin_user_styles() {
+        wp_enqueue_style( 'font-awesome',  plugins_url( 'scss/vendor/font-awesome/fontawesome.min.css', __FILE__ ) );
+        wp_enqueue_style( 'fa-solid',  plugins_url( 'scss/vendor/font-awesome/solid.min.css', __FILE__ ) );
+        wp_enqueue_style( 'slick',  plugins_url( 'scss/vendor/slick.css', __FILE__ ) );
+        wp_enqueue_style( 'style',  plugins_url( 'style.css', __FILE__ ) );
+    }
+    add_action( 'wp_enqueue_scripts', 'plugin_user_styles', 90 );
+
+    // Scripts inclusion
+    function plugin_admin_scripts() {
         $localize = array(
             'ajaxurl' => admin_url( 'admin-ajax.php' )
         );
@@ -44,7 +52,16 @@
         wp_enqueue_script('plugin-script');
         wp_localize_script( 'plugin-script', 'app', $localize);
     }
-    add_action( 'admin_enqueue_scripts', 'plugin_user_scripts' );
+    add_action( 'admin_enqueue_scripts', 'plugin_admin_scripts' );
+
+    function plugin_user_scripts() {
+        wp_register_script ( 'slick-slider', plugins_url( '/js/slick.min.js', __FILE__ ), array('jquery') );
+        wp_register_script ( 'front-end', plugins_url( '/js/front-desk.js', __FILE__ ), array('jquery','slick-slider') );
+
+        wp_enqueue_script('slick-slider');
+        wp_enqueue_script('front-end');
+    }
+    add_action( 'wp_enqueue_scripts', 'plugin_user_scripts' );
 
     function rtcslide_manage_page_html() {
         handle_upload();
@@ -112,4 +129,22 @@
     }
     add_action("wp_ajax_nopriv_sort_list", "ajax_sort_list");
     add_action("wp_ajax_sort_list", "ajax_sort_list");
+
+    function ajax_remove_slide() {
+        global $wpdb;
+        $table_name = $wpdb->prefix . 'rtcamp_slideshow';
+
+        $wpdb->delete($table_name, array( 'id' => $_POST['slide_id']) );
+
+        wp_die();
+    }
+    add_action("wp_ajax_nopriv_remove_slide", "ajax_remove_slide");
+    add_action("wp_ajax_remove_slide", "ajax_remove_slide");
+
+    function rtcamp_slideshow($atts){
+        ob_start();
+        include_once(  plugin_dir_path( __FILE__ ) . '/partials/carousel.php' );
+        return ob_get_clean();  
+    }
+    add_shortcode('rtcampslideshow', 'rtcamp_slideshow');
 ?>

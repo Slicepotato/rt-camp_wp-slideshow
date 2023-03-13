@@ -68,3 +68,32 @@
 .ui-state-highlight {
     background-color: rgb(232, 228, 156);
 }
+
+.carousel-container {
+    position: relative;
+}
+.rtcamp-carousel {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.slick-nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    list-style-type: none;
+    padding: 0;
+    left: 0;
+
+    .prev {
+        margin-left: -5rem;
+    }
+    .next {
+        margin-right: -5rem;
+    }
+}
