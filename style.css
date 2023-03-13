@@ -2,3 +2,43 @@
   display: none; }
   .img-preview.show {
     display: flex; }
+
+.image-list > li {
+  border-bottom: 1px solid #ccc; }
+  .image-list > li:last-of-type {
+    border: none; }
+
+.imglist-row {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 0 1rem; }
+  .imglist-row li {
+    margin: 0; }
+    .imglist-row li img {
+      width: 300px;
+      margin: 10px 0; }
+  .imglist-row:focus, .imglist-row:hover {
+    background-color: #ccc; }
+
+.img-list-container {
+  flex: 1 0 auto; }
+
+.img-remove {
+  border: none;
+  background-color: #c10;
+  color: #fff;
+  border-radius: 50%; }
+  .img-remove:focus, .img-remove:hover {
+    cursor: pointer; }
+
+.sort-hover {
+  width: 50px; }
+  .sort-hover:focus, .sort-hover:hover {
+    cursor: row-resize; }
+
+.ui-sortable-placeholder {
+  padding: 2rem; }
+
+.ui-state-highlight {
+  background-color: #e8e49c; }

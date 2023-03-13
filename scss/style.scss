@@ -7,3 +7,64 @@
         display: flex;
     }
 }
+
+.image-list {
+    > li {
+        border-bottom: 1px solid #ccc;
+
+        &:last-of-type {
+            border: none;
+        }
+    }
+}
+
+.imglist-row {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 0 1rem;
+
+    li {
+        margin: 0;
+
+        img {
+            width: 300px;
+            margin: 10px 0;
+        }
+    }
+
+    &:focus, &:hover {
+        background-color: #ccc;
+    }
+}
+
+.img-list-container {
+    flex: 1 0 auto;
+}
+
+.img-remove {
+    border: none;
+    background-color: #c10;
+    color: #fff;
+    border-radius: 50%;
+
+    &:focus, &:hover {
+        cursor: pointer;
+    }
+}
+
+.sort-hover {
+    width: 50px;
+
+    &:focus, &:hover {
+        cursor: row-resize;
+    }
+}
+
+.ui-sortable-placeholder {
+    padding: 2rem;
+}
+
+.ui-state-highlight {
+    background-color: rgb(232, 228, 156);
+}

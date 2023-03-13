@@ -6,5 +6,8 @@
     "scripts": {
         "build-css": "node-sass --include-path scss ./scss/style.scss   ./style.css",
         "watch-css": "nodemon -e scss -x \"npm run build-css\""
+    },
+    "dependencies": {
+        "@fortawesome/fontawesome-free": "^6.3.0"
     }
 }
